@@ -1,0 +1,9 @@
+# Linux x86_64 / Python 3.10 / CUDA 12.8.
+# Base geometry and loop-closure dependencies; keep one source of truth.
+-r requirements-x86_64.txt
+
+# Semantic dependencies observed in the local combined runtime.
+# This is a direct-dependency specification, not a complete environment lock.
+transformers==5.20.1
+tokenizers==0.23.3
+protobuf==7.36.2

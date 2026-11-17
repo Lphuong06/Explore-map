@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cambase-pipeline"
+version = "1.0.0"
+description = "VGGT-SLAM-style submap mapping on a MapAnything backbone (SALAD/DINOv2 loop closure, wheel-odometry factors)."
+readme = "README.md"
+requires-python = ">=3.10"
+# Kept empty on purpose: exact pinned versions (CUDA build of torch, gtsam, faiss-cpu,
+# triton, mapanything from a specific git commit, ...) live in ../requirements-x86_64.txt
+# (or ../requirements-jetson.txt on aarch64/Jetson), at the repo root, because several of
+# them need a platform-specific wheel/index that pip's normal dependency resolver can't
+# express reliably. Always install with:
+#   pip install -r ../requirements-x86_64.txt && pip install -e .
+dependencies = []
+
+# This project is a *research pipeline*, not a library meant to be published --
+# installing it editable ("pip install -e .") is only here so `import ma_slam` /
+# `import loop` / `import model` work from anywhere (tools/, a
+# notebook, a REPL) without every script having to manually
+# sys.path.insert(0, ".../src") first. build_map.sh and the
+# tools/*.py scripts already insert that path themselves, so plain `python
+# src/ma_slam/run.py` keeps working with zero setup, install or not.
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["ma_slam*", "loop*", "model*"]
+exclude = ["*.weights*"]
+
+[tool.setuptools.package-dir]
+"" = "src"

@@ -1,0 +1,42 @@
+# Large/shared data, not for git — symlinked from each project folder to these
+# sibling directories (see each project's README "Repository layout"), or
+# auto-downloaded/regenerated on first run (see map_reconstruction/README.md's
+# "Notes" section for weights).
+**/example_data/
+**/dataset/
+**/outputs/
+**/src/weights/
+
+# Python
+**/__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+
+# OS
+.DS_Store
+
+# Raw ROS2 bags (never committed; keep them anywhere, e.g. next to the project folders)
+*.db3
+*.mcap
+/*/metadata.yaml
+
+# Local secrets and runtime artifacts
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.venv-*/
+**/torch_home/
+**/checkpoints/
+*.ckpt
+*.safetensors
+*.log
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+/dist/
+/build/
